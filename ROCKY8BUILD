@@ -1,0 +1,17 @@
+On 1/29/25 20:22, Maxwell James Johnson wrote:
+> Following up on this, I managed to get it to build and run. 
+>
+> I'll just list the steps here in case it helps you to get it going on Rocky.
+>
+> 1. Pulled this repo: https://github.com/OpenDX-SE/OpenDX (all the following will assume working in the top level of the git directory)
+> 2. Set CXXFLAGS environment variable to "-std=c++98"
+> 3. Set CFLAGS environment variable to "setenv CFLAGS -std=c99 -Wno-implicit-int -Wno-implicit-function-declaration -Wno-incompatible-pointer-types"
+> 4. Run 'autoreconf -fi'
+> 5. Run './configure --with-javadx=no --enable-installhtml=no --enable-shared=no --enable-static=yes --prefix=/path/to/installation' 
+> 6. Run make 
+> 7. Change to base directory of install. I think it tries to open the .so files relative to the prefix, so possibly modifying the LD_LIBRARY_PATH could work. 
+> 8. Run bin/dx
+>
+> Currently it will start up, when clicking "start new visual program" it errors reports an error connecting to dxexec. Seems like that may supposed to be running as a server or something. Or possibly some environment variables/command line args need to be set for bin/dx to properly find everything.
+>
+> Hope that helps
